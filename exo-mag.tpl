@@ -200,7 +200,7 @@
 			<?php } ?>
 		</div>
 		<?php } ?>
-        <img src="<?php echo $image; ?>" alt="<?php echo $heading_title; ?>" itemprop="image">
+            <!-- img tag moved from here -->
         <?php if ($column_left && $column_right) { ?>
             <?php $class = 'col-sm-6'; ?>
         <?php } elseif ($column_left || $column_right) { ?>
@@ -222,22 +222,24 @@
                 <i class="icon-font icon-link py-2" role="button"></i>
             </div>
             <div class="blog-body p-5 rounded-3 rounded-bottom">
-                <h1 class="h2 fw-bold font-latin-yekan text-center" itemprop="headline"><?php echo $heading_title; ?></h1>
-                <div class="col-6 mx-auto mt-4 mb-3" style="background-color:#03c03c;height:3px"></div>
+                <!-- the h1 tag changed from text-center to text-start, the mx-auto removed from the line, it changed from col-6 to col-9 -->
+                <h1 class="h2 fw-bold font-latin-yekan text-start" itemprop="headline"><?php echo $heading_title; ?></h1>
+                <div class="col-9 mt-4 mb-3" style="background-color:#03c03c;height:3px"></div>
+                <!-- The Author Container. content order changed, green border added, avatar width changed from 75 to 60 -->
                 <div class="d-flex justify-content-center align-items-center mt-3 mb-4 font-yekan fw-normal">
-                    <div>
-                        نوشته‌ی <a href="<?php echo $user_info; ?>" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name" class="text-primary"><?php echo $author; ?></span></a>
+                    <div class="rounded-circle overflow-hidden me-4">
+                        <img src="catalog/view/theme/default/image/avatar.jpg" alt="avatar" width="60">
                     </div>
-                    <div class="rounded-circle overflow-hidden mx-4">
-                        <img src="catalog/view/theme/default/image/avatar.jpg" alt="avatar" width="75">
+                    <div class="border-end border-3 me-4 pe-4" style="border-color: #03C03C !important">
+                        نوشته‌ی <a href="<?php echo $user_info; ?>" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><?php echo $author; ?></span></a>
                     </div>
-                    <div>
+                    <div class="border-end border-3 me-4 pe-4" style="border-color: #03C03C !important">
                         <?php echo $date_time_diff; ?>
                         <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
                     </div>
                     <?php if ($edit) { ?><a href="<?php echo $edit; ?>" target="_blank" class="ms-auto badge bg-secondary"><i class="fa fa-pencil fa-2x"></i></a><?php } ?>
-                </div>
 
+                </div>
                 <?php if($post_author_status && false){ ?>
                 <p>
                     <img src="<?php echo $author_avatar; ?>" alt="<?php echo $author; ?>">
@@ -249,6 +251,8 @@
 
                 <div class="row">
                     <div class="col-9 description fw-normal font-latin-yekan" itemprop="articleBody">
+                        <!-- img tag moved here. border rounded   -->
+                        <img class="rounded" src="<?php echo $image; ?>" alt="<?php echo $heading_title; ?>" itemprop="image">
                         <?php echo $description; ?>
                     </div>
                     <div class="col-3 sticky-top align-self-start bg-light p-3 mb-3" style="top:100px;z-index:1">
@@ -256,7 +260,9 @@
                         <div id="description-heading" class="d-inline-flex flex-column ms-3"></div>
                     </div>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between mb-n4">
+
+                <!-- class="d-flex flex-wrap justify-content-between mb-n4". this class removed from the container -->
+                <div>
                     <div class="w-100 text-center my-5">
                         <img src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
                     </div>
@@ -336,7 +342,9 @@
                 </script>
             <?php } ?>
 
-            <div class="comments mt-5">
+            
+
+            <!-- <div class="comments mt-5">
                 <div id="comment" class="col-8 mx-auto"></div>
                 <?php if(!$allow_comment) { ?>
                     <h6 class="rounded-1 p-3 text-center fw-bold mt-3"> برای ارسال دیدگاه ابتدا باید<a href="javascript:$('#login-form').modal('show');" class="text-success"> وارد شوید.</a></h6>
@@ -351,7 +359,7 @@
                     </form>
                 <?php } ?>
 
-            </div>
+            </div> -->
 
             <?php if ($product_related) { ?>
                 <h5 class="mt-5 fw-bold">محصولات مرتبط</h5>
