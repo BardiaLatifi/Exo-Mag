@@ -211,7 +211,7 @@
         <?php echo $content_top; ?>
 
         <div class="<?php echo $class; ?>">
-            <div class="d-flex flex-column bg-light text-black-50 float-start p-1 mt-3 rounded-1">
+            <div class="position-absolute start-75  d-flex flex-column bg-light text-black-50 float-start p-1 mt-3 rounded-1" style="top: 110%">
                 <div>
                     <?php if ($customer_liked) { ?>
                     <i class="icon-font icon-heart-fill py-2 text-primary liked" role="button"></i>
@@ -222,8 +222,8 @@
                 <i class="icon-font icon-link py-2" role="button"></i>
             </div>
             <div class="blog-body p-5 rounded-3 rounded-bottom">
-                <!-- the h1 tag changed from text-center to text-start, the mx-auto removed from the line, it changed from col-6 to col-9 -->
-                <h1 class="h2 fw-bold font-latin-yekan text-start" itemprop="headline"><?php echo $heading_title; ?></h1>
+                <!-- the h1 tag changed from text-center to text-start, ms-5 added to title, the mx-auto removed from the green line, it changed from col-6 to col-9 -->
+                <h1 class="h2 fw-bold font-latin-yekan text-start ms-5" itemprop="headline"><?php echo $heading_title; ?></h1>
                 <div class="col-9 mt-4 mb-3" style="background-color:#03c03c;height:3px"></div>
                 <!-- The Author Container. content order changed, green border added, avatar width changed from 75 to 60 -->
                 <div class="d-flex justify-content-center align-items-center mt-3 mb-4 font-yekan fw-normal">
@@ -236,6 +236,9 @@
                     <div class="border-end border-3 me-4 pe-4" style="border-color: #03C03C !important">
                         <?php echo $date_time_diff; ?>
                         <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
+                    </div>
+                    <div class="me-4 pe-4" style="border-color: #03C03C !important">
+                        <p class="mb-0" >زمان مطالعه:</p>
                     </div>
                     <?php if ($edit) { ?><a href="<?php echo $edit; ?>" target="_blank" class="ms-auto badge bg-secondary"><i class="fa fa-pencil fa-2x"></i></a><?php } ?>
 
