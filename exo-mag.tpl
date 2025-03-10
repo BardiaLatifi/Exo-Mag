@@ -200,17 +200,18 @@
 			<?php } ?>
 		</div>
 		<?php } ?>
+		<?php echo $column_left; ?>
             <!-- img tag moved from here -->
         <?php if ($column_left && $column_right) { ?>
-            <?php $class = 'col-sm-6'; ?>
+            <?php $class = 'col-6'; ?>
         <?php } elseif ($column_left || $column_right) { ?>
-            <?php $class = 'col-md-9 col-sm-8'; ?>
+            <?php $class = 'col-9'; ?>
         <?php } else { ?>
             <?php $class = 'col-12'; ?>
         <?php } ?>
         <?php echo $content_top; ?>
 
-        <div class="<?php echo $class; ?>">
+        <div class="<?php echo $class; ?>"> <?php echo $content_top; ?>
             <div class="position-absolute start-75  d-flex flex-column bg-light text-black-50 float-start p-1 mt-3 rounded-1" style="top: 110%">
                 <div>
                     <?php if ($customer_liked) { ?>
@@ -253,14 +254,10 @@
                 </p>
 
                 <div class="row">
-                    <div class="col-9 description fw-normal font-latin-yekan" itemprop="articleBody">
+                    <div class="description fw-normal font-latin-yekan" itemprop="articleBody">
                         <!-- img tag moved here. border rounded   -->
                         <img class="rounded" src="<?php echo $image; ?>" alt="<?php echo $heading_title; ?>" itemprop="image">
                         <?php echo $description; ?>
-                    </div>
-                    <div class="col-3 sticky-top align-self-start bg-light p-3 mb-3" style="top:100px;z-index:1">
-                        <h5 class="text-center fw-bold mb-2">فهرست مطالب</h5>
-                        <div id="description-heading" class="d-inline-flex flex-column ms-3"></div>
                     </div>
                 </div>
 
@@ -388,18 +385,10 @@
                     })
                 </script>
             <?php } ?>
-
-        </div>
+          <?php echo $content_bottom; ?>
+        </div> <?php echo $column_right; ?>
     </div>
 <?php } ?>
-
-
-<div class="container">
-	<div class="row">
-		<?php echo $content_bottom; ?>
-	</div>
-		<?php echo $column_right; ?>
-</div>
 
 
 <style>
@@ -419,17 +408,6 @@
         cursor: pointer
     }
 </style>
-<script>
-      $('.description h2, .description h3').toArray().forEach(element => {
-        $('#description-heading').append('<a class="mb-2" role="button">'+element.innerText+'</a>')
-      });
-      $('#description-heading a').on('click' , function (params) {
-        const elm =  $( `.description h2:contains(${params.target.innerText}), .description h3:contains(${params.target.innerText})`)
-        $('html, body').animate({
-              scrollTop: $(elm).offset().top-100
-          }, 1000);
-      })
-</script>
 <script>
     $('.rate i').on('mousemove', function (params) {
         let rateNumber = params.offsetX * 100 / params.target.clientWidth;
