@@ -1,8 +1,8 @@
 <!-- HTML -->
-<div class="sticky-margin-top align-self-start bg-light p-3 mb-3">
-  <!-- Flex container for header and toggle button (with no extra space between) -->
+<div class="sticky-margin-top align-self-start pt-3 ps-3 mb-3">
+  <!-- Flex container for toggle button and header -->
   <div class="header-container">
-    <button type="button" id="toggleDropdown" class="toggle-button">
+    <button type="button" id="toggleDropdown" class="blog-toggle-button">
       <i class="fa fa-angle-down"></i>
     </button>
     <h5 class="fw-bold mb-2">فهرست مطالب</h5>
@@ -13,19 +13,21 @@
 <style>
   .sticky-margin-top {
     position: sticky;
-    top: 85px;
+    top: 386px;
     transition: top 0.5s;
     user-select: none;
     font-size: 0.8rem;
+    background-color: rgba(245, 245, 247, 0.5);
+    border-radius: 5px;
   }
-  /* Flex container for header and toggle button (row direction, no extra space) */
+  /* Flex container for toggle button and header */
   .header-container {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
   /* Styling for the toggle button */
-  .toggle-button {
+  .blog-toggle-button {
     align-self: start;
     width: 25px;
     height: 25px;
@@ -38,12 +40,28 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  .toggle-button i {
+  .blog-toggle-button i {
     transform: translateY(-2px);
   }
-  .toggle-button:hover {
-    background-color : #03C03C;
+  .blog-toggle-button:hover {
+    background-color: #03C03C;
     color: white;
+  }
+  /* Styling for the bullet inside h3 anchors */
+  .blog-list-bullet {
+    width: 11px;
+    height: 11px;
+    background-color: transparent;
+    border: 1px solid #03C03C;
+    border-radius: 4px;
+    margin-left: 8px;
+    align-self: center;
+  }
+  /* Apply border-top and padding to each h3 navigation anchor */
+  .blog-list-topic {
+    border-top: 1px solid #E6E6E6;
+    padding: 1em 0;
+    font-weight: normal;
   }
 </style>
 
@@ -58,9 +76,10 @@ $('.description h2, .description h3').each(function (key, element) {
         '</a>'
       );
     } else {
+      // For h3: add an anchor with the "blog-list-topic" class (with border-top and padding)
       $('#description-heading1').append(
-        '<a class="mb-1 ms-2 d-flex align-items-center" data-scroll="#description-heading1-scroll' + key + '" role="button">' +
-          '<div style="width:11px; height:11px; background-color:transparent; border:1px solid #03C03C; border-radius:4px; margin-left:8px; align-self:center;"></div>' +
+        '<a class="blog-list-topic mb-1 ms-2 d-flex align-items-center" data-scroll="#description-heading1-scroll' + key + '" role="button">' +
+          '<div class="blog-list-bullet"></div>' +
           element.innerText +
         '</a>'
       );
@@ -76,22 +95,27 @@ $('#description-heading1 a').on('click', function () {
 $(window).scroll(function () {
   const scrollPosition = $(window).scrollTop() + 160;
   let currentIndex = -1;
-
-  // Determine the current section index based on scroll position
-  $('.description h3').each(function (key) {
+  
+  // Determine the current section index among h3 elements
+  $('.description h3').each(function (key, element) {
     const target = $('#description-heading1-scroll' + key);
     if (target.offset().top <= scrollPosition) {
       currentIndex = key;
     }
   });
-
-  // Update bullets: only the bullet for the current section is highlighted
-  $('.description h3').each(function (key) {
-    const bullet = $('#description-heading1 a').eq(key).find('div');
+  
+  // Select only h3 anchors (blog-list-topic) from the navigation
+  const h3Anchors = $('#description-heading1 a').filter(function() {
+    return $(this).hasClass('blog-list-topic');
+  });
+  
+  h3Anchors.each(function(key, element) {
     if (key === currentIndex) {
-      bullet.css('background-color', '#03C03C');
+      $(element).css('font-weight', 'bold');
+      $(element).find('div').css('background-color', '#03C03C');
     } else {
-      bullet.css('background-color', 'transparent');
+      $(element).css('font-weight', 'normal');
+      $(element).find('div').css('background-color', 'transparent');
     }
   });
 });
@@ -99,7 +123,7 @@ $(window).scroll(function () {
 $(document).ready(function() {
   // Filter out the h3 anchors (assumed not to contain a <b> tag) inside #description-heading1
   const h3Anchors = $('#description-heading1 a').filter(function() {
-    return $(this).find('b').length === 0;
+    return $(this).hasClass('blog-list-topic');
   });
   
   // Wrap all h3 anchors in a dropdown container, hidden by default.
@@ -117,6 +141,16 @@ $(document).ready(function() {
         icon.removeClass('fa-angle-up').addClass('fa-angle-down');
       }
     });
+  });
+  // Dynamically adjust the top offset of the sticky container based on scroll position.
+  $(window).on('scroll', function() {
+    const scrollTop = $(window).scrollTop();
+    // Use a threshold (e.g. 180px) to switch the top offset.
+    if (scrollTop > 180) {
+      $('.sticky-margin-top').css('top', '85px');
+    } else {
+      $('.sticky-margin-top').css('top', '386px');
+    }
   });
 });
 </script>
