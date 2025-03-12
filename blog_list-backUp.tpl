@@ -1,6 +1,6 @@
-<div class="sticky-margin-top align-self-start pt-3 ps-3 mb-3">
-  <div class="header-container">
-    <button type="button" id="toggleDropdown" class="blog-toggle-button">
+<div class="position-sticky w-100 user-select-none rounded align-self-start bg-light pt-3 ps-3 mb-3" style="top: 386px; font-size: 0.8rem; transition: top 0.5s;">
+  <div class="header-container d-flex flex-row align-items-center mb-2">
+  <button type="button" id="blog-dropdown-button" class="btn d-flex rounded align-items-center justify-content-center p-0 me-2 fs-6" style="width: 22px; height: 22px; color: #03C03C; border-color: #03C03C;">
       <i class="fa fa-angle-down"></i>
     </button>
     <h5 class="fw-bold mb-2 h6">فهرست مطالب</h5>
@@ -9,59 +9,13 @@
 </div>
 
 <style>
-  .sticky-margin-top {
-    position: sticky;
-    top: 386px;
-    transition: top 0.5s;
-    user-select: none;
-    font-size: 0.8rem;
-    background-color: rgba(245, 245, 247, 0.5);
-    border-radius: 5px;
-  }
-  /* Flex container for toggle button and header */
-  .header-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  /* Styling for the toggle button */
-  .blog-toggle-button {
-    align-self: start;
-    width: 22px;
-    height: 22px;
-    background: transparent;
-    margin-left: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #03C03C;
-    border: 1px solid #03C03C;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 200ms;
-  }
   .blog-toggle-button i {
     transform: translateY(-3px);
   }
-  .blog-toggle-button:hover {
+  #blog-dropdown-button:hover {
     background-color: #03C03C;
-    color: white;
+    color: white !important;
     transition: 200ms;
-  }
-  /* Styling for the bullets */
-  .blog-list-bullet {
-    width: 11px;
-    height: 11px;
-    background-color: transparent;
-    border: 1px solid #03C03C;
-    border-radius: 4px;
-    margin-left: 8px;
-    align-self: center;
-  }
-
-  .blog-topic {
-    border-top: 1px solid #E6E6E6;
-    padding: 1em 0;
-    font-weight: normal;
   }
 </style>
 
@@ -78,8 +32,8 @@ $('.description h2, .description h3').each(function (key, element) {
     } else {
       // For h3: add an anchor with the "blog-topic" class
       $('#description-heading1').append(
-        '<a class="blog-topic mb-1 ms-2 d-flex align-items-center" data-scroll="#description-heading1-scroll' + key + '" role="button">' +
-          '<div class="blog-list-bullet"></div>' +
+        '<a class="blog-topic mb-1 d-flex align-items-center border-top pt-3 pb-3" data-scroll="#description-heading1-scroll' + key + '" role="button">' +
+          '<div class="blog-list-bullet bt-transparent align-self-center me-2" style="width:11px; height:11px; border:1px solid #03C03C; border-radius:4px;"></div>' +
           element.innerText +
         '</a>'
       );
@@ -132,9 +86,9 @@ $(document).ready(function() {
   }
   
   // Toggle the dropdown button icon.
-  $('#toggleDropdown').on('click', function() {
+  $('#blog-dropdown-button').on('click', function() {
     $('#h3Dropdown').slideToggle(200, function() {
-      const icon = $('#toggleDropdown i');
+      const icon = $('#blog-dropdown-button i');
       if ($('#h3Dropdown').is(':visible')) {
         icon.removeClass('fa-angle-down').addClass('fa-angle-up');
       } else {
@@ -147,9 +101,9 @@ $(document).ready(function() {
     const scrollTop = $(window).scrollTop();
     // 100px threshold
     if (scrollTop > 100) {
-      $('.sticky-margin-top').css('top', '85px');
+      $('.position-sticky').css('top', '85px');
     } else {
-      $('.sticky-margin-top').css('top', '386px');
+      $('.position-sticky').css('top', '386px');
     }
   });
 });
