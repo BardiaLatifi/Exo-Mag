@@ -1,11 +1,9 @@
-<!-- HTML -->
 <div class="sticky-margin-top align-self-start pt-3 ps-3 mb-3">
-  <!-- Flex container for toggle button and header -->
   <div class="header-container">
     <button type="button" id="toggleDropdown" class="blog-toggle-button">
       <i class="fa fa-angle-down"></i>
     </button>
-    <h5 class="fw-bold mb-2">فهرست مطالب</h5>
+    <h5 class="fw-bold mb-2 h6">فهرست مطالب</h5>
   </div>
   <div id="description-heading1" class="d-inline-flex flex-column ms-3"></div>
 </div>
@@ -29,8 +27,8 @@
   /* Styling for the toggle button */
   .blog-toggle-button {
     align-self: start;
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     background: transparent;
     margin-left: 10px;
     font-size: 1.2rem;
@@ -39,15 +37,17 @@
     border: 1px solid #03C03C;
     border-radius: 5px;
     cursor: pointer;
+    transition: 200ms;
   }
   .blog-toggle-button i {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
   .blog-toggle-button:hover {
     background-color: #03C03C;
     color: white;
+    transition: 200ms;
   }
-  /* Styling for the bullet inside h3 anchors */
+  /* Styling for the bullets */
   .blog-list-bullet {
     width: 11px;
     height: 11px;
@@ -57,8 +57,8 @@
     margin-left: 8px;
     align-self: center;
   }
-  /* Apply border-top and padding to each h3 navigation anchor */
-  .blog-list-topic {
+
+  .blog-topic {
     border-top: 1px solid #E6E6E6;
     padding: 1em 0;
     font-weight: normal;
@@ -76,9 +76,9 @@ $('.description h2, .description h3').each(function (key, element) {
         '</a>'
       );
     } else {
-      // For h3: add an anchor with the "blog-list-topic" class (with border-top and padding)
+      // For h3: add an anchor with the "blog-topic" class
       $('#description-heading1').append(
-        '<a class="blog-list-topic mb-1 ms-2 d-flex align-items-center" data-scroll="#description-heading1-scroll' + key + '" role="button">' +
+        '<a class="blog-topic mb-1 ms-2 d-flex align-items-center" data-scroll="#description-heading1-scroll' + key + '" role="button">' +
           '<div class="blog-list-bullet"></div>' +
           element.innerText +
         '</a>'
@@ -104,12 +104,12 @@ $(window).scroll(function () {
     }
   });
   
-  // Select only h3 anchors (blog-list-topic) from the navigation
-  const h3Anchors = $('#description-heading1 a').filter(function() {
-    return $(this).hasClass('blog-list-topic');
+  // Select only h3 anchors (blog-topic) from the navigation
+  const blogTopics = $('#description-heading1 a').filter(function() {
+    return $(this).hasClass('blog-topic');
   });
   
-  h3Anchors.each(function(key, element) {
+  blogTopics.each(function(key, element) {
     if (key === currentIndex) {
       $(element).css('font-weight', 'bold');
       $(element).find('div').css('background-color', '#03C03C');
@@ -122,16 +122,16 @@ $(window).scroll(function () {
 
 $(document).ready(function() {
   // Filter out the h3 anchors (assumed not to contain a <b> tag) inside #description-heading1
-  const h3Anchors = $('#description-heading1 a').filter(function() {
-    return $(this).hasClass('blog-list-topic');
+  const blogTopics = $('#description-heading1 a').filter(function() {
+    return $(this).hasClass('blog-topic');
   });
   
-  // Wrap all h3 anchors in a dropdown container, hidden by default.
-  if (h3Anchors.length > 0) {
-    h3Anchors.wrapAll('<div id="h3Dropdown" style="display:none;"></div>');
+  // Dropdown hidden by default
+  if (blogTopics.length > 0) {
+    blogTopics.wrapAll('<div id="h3Dropdown" style="display:none;"></div>');
   }
   
-  // Toggle the dropdown container on button click and update the icon.
+  // Toggle the dropdown button icon.
   $('#toggleDropdown').on('click', function() {
     $('#h3Dropdown').slideToggle(200, function() {
       const icon = $('#toggleDropdown i');
@@ -142,11 +142,11 @@ $(document).ready(function() {
       }
     });
   });
-  // Dynamically adjust the top offset of the sticky container based on scroll position.
+  // Dynamic sticky container
   $(window).on('scroll', function() {
     const scrollTop = $(window).scrollTop();
-    // Use a threshold (e.g. 180px) to switch the top offset.
-    if (scrollTop > 180) {
+    // 100px threshold
+    if (scrollTop > 100) {
       $('.sticky-margin-top').css('top', '85px');
     } else {
       $('.sticky-margin-top').css('top', '386px');
