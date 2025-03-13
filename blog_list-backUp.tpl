@@ -1,21 +1,23 @@
 <div class="position-sticky w-100 user-select-none rounded align-self-start bg-light pt-3 ps-3 mb-3" style="top: 386px; font-size: 0.8rem; transition: top 0.5s;">
   <div class="header-container d-flex flex-row align-items-center mb-2">
-  <button type="button" id="blog-dropdown-button" class="btn d-flex rounded align-items-center justify-content-center p-0 me-2 fs-6" style="width: 22px; height: 22px; color: #03C03C; border-color: #03C03C;">
-      <i class="fa fa-angle-down"></i>
-    </button>
+  <input type="checkbox" id="blog-dropdown-input" class="blog-dropdown-input d-none">
+  <label for="blog-dropdown-input" id="blog-dropdown-button" class="btn d-flex rounded align-items-center justify-content-center p-0 me-2 fs-6" style="width: 22px; height: 22px; color: #03C03C; border-color: #03C03C;">
+      <i class="fa fa-angle-down" style="transition: transform 0.2s ease"></i>
+    </label>
     <h5 class="fw-bold mb-2 h6">فهرست مطالب</h5>
   </div>
   <div id="description-heading1" class="d-inline-flex flex-column ms-3"></div>
 </div>
 
 <style>
-  .blog-toggle-button i {
-    transform: translateY(-3px);
-  }
   #blog-dropdown-button:hover {
     background-color: #03C03C;
     color: white !important;
     transition: 200ms;
+  }
+
+  .blog-dropdown-input:checked + #blog-dropdown-button i {
+    transform: rotate(180deg);
   }
 </style>
 
@@ -85,17 +87,15 @@ $(document).ready(function() {
     blogTopics.wrapAll('<div id="h3Dropdown" style="display:none;"></div>');
   }
   
-  // Toggle the dropdown button icon.
-  $('#blog-dropdown-button').on('click', function() {
-    $('#h3Dropdown').slideToggle(200, function() {
-      const icon = $('#blog-dropdown-button i');
-      if ($('#h3Dropdown').is(':visible')) {
-        icon.removeClass('fa-angle-down').addClass('fa-angle-up');
-      } else {
-        icon.removeClass('fa-angle-up').addClass('fa-angle-down');
-      }
-    });
+  // Add this to handle the toggle since CSS selector can't reach nested element easily
+  $('#blog-dropdown-input').on('change', function() {
+    if($(this).is(':checked')) {
+      $('#h3Dropdown').slideDown(200);
+    } else {
+      $('#h3Dropdown').slideUp(200);
+    }
   });
+  
   // Dynamic sticky container
   $(window).on('scroll', function() {
     const scrollTop = $(window).scrollTop();
