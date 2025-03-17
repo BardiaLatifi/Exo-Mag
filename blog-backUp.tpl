@@ -264,7 +264,7 @@
                 <!-- class="d-flex flex-wrap justify-content-between mb-n4". this class removed from the container -->
                 <div>
                     <div class="w-100 text-center my-5">
-                        <img src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
+                        <img  src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
                     </div>
                     <div>
                         <?php if ($tags) { ?>
@@ -321,6 +321,9 @@
                 </div>
             </div>
 
+<!------------------
+OWL - RELATED ARTICLES
+-------------------->
 
             <?php if ($blogs) { ?>
                 <h5 class="mt-5 fw-bold">مقالات مرتبط</h5>
@@ -342,7 +345,9 @@
                 </script>
             <?php } ?>
 
-            
+<!------------------
+COMMENT INPUT
+-------------------->
 
             <!-- <div class="comments mt-5">
                 <div id="comment" class="col-8 mx-auto"></div>
@@ -360,6 +365,10 @@
                 <?php } ?>
 
             </div> -->
+
+<!------------------
+OWL - RELATED PRODUCTS
+-------------------->
 
             <?php if ($product_related) { ?>
                 <h5 class="mt-5 fw-bold">محصولات مرتبط</h5>
@@ -390,6 +399,9 @@
     </div>
 <?php } ?>
 
+<!-------------------
+ RATE - STYLE & LOGICS
+ ------------------->
 
 <style>
     #customer-rate i.icon-font::before ,
@@ -451,6 +463,10 @@
 		});     
     })
 </script>
+
+<!-------------------
+COMMENTS LOGICS
+ ------------------->
 
 <script type="text/javascript">
 
