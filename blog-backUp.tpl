@@ -466,7 +466,7 @@ OWL - RELATED PRODUCTS
 
 <!-------------------
 COMMENTS LOGICS
- ------------------->
+------------------->
 
 <script type="text/javascript">
 
@@ -537,8 +537,14 @@ function likeComment (blog_comment_id, status) {
 	<?php } ?>
 }
 
+/**** ON LOAD ****/ 
 
 $(document).ready(function(){
+
+  // Rounded class to all images in description
+  $('.description img').addClass('rounded w-100 mb-3 mt-3');
+  $('.description h3, h2').addClass('mb-3');
+
   $(".btn-owl-post").mouseover(function(){
     $(this).children('.cart').css('display', 'none');
     $(this).children('.price').css('display', 'block');
