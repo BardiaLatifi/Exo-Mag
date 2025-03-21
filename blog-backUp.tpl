@@ -32,14 +32,15 @@
                 <div class="fw-normal d-flex align-items-center gap-2 mt-3 ps-2 font-yekan text-black">
                     <div class="d-flex align-items-center">
                         <img src="catalog/view/theme/default/image/avatar.jpg" alt="avatar" class="rounded-circle me-2" width="35">
-                        <a href="<?php echo $user_info; ?>" class="border-end border-2 pe-2 text-decoration-none" style="border-color: #03C03C !important" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <a href="<?php echo $user_info; ?>" class="border-end py-1 border-1 pe-2 text-decoration-none" style="border-color: #03C03C !important" itemprop="author" itemscope itemtype="https://schema.org/Person">
                             نوشته‌ی <span itemprop="name"><?php echo $author; ?></span>
                         </a>
                     </div>
-                    <div class="border-end border-2 pe-2" style="border-color: #03C03C !important">
+                    <div class="border-end py-1 border-1 pe-2" style="border-color: #03C03C !important">
                         <?php echo $date_time_diff; ?>
                         <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
                     </div>
+                    <div>زمان مطالعه:</div>
                 </div>
 
                 <?php if($post_author_status && false){ ?>
@@ -50,8 +51,11 @@
                     <?php } ?>
 
                     <?php if($post_date_added_status  && false) { ?><span class="left-span-post"> <?php echo $date_time_diff; ?> <i class="icon-clock"></i><?php } ?></span></p>
-
-                <div class="bg-light p-3 mb-3">
+                    <!--  BLOG_LIST -->
+                <div class="d-flex flex-row align-items-end p-3 mb-3">
+                    <button class="blog-dropdown-button btn p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#description-heading1" aria-expanded="true" aria-controls="description-heading1" style="width: 28px; height: 28px; background:#03C03C">
+                    <i class="fa fa-angle-down fs-4 fw-bolder" style="transition: transform 0.2s ease; color:white"></i>
+                    </button>
                     <h5 class="fw-bold mb-2">فهرست مطالب</h5>
                     <div id="description-heading" class="d-inline-flex flex-column ms-3"></div>
                 </div>
@@ -82,7 +86,7 @@
                     <?php } ?>
                     <span id="count-liked"><?php echo $count_liked; ?></span> نفر این پست را پسندیده اند. <span class="bold-txt"><?php echo $text_share_this;?></span>
                 </div>
-                <div class="d-flex justify-content-between pb-4 border-bottom border-light border-2 mb-4">
+                <div class="d-flex justify-content-between pb-4 border-bottom border-light py-1 border-1 mb-4">
                     <div>
                         <h6 class="fw-bold mb-3">به اشتراک بگذارید در :</h6>
                         <a href="https://telegram.me/share/url?url=<?php echo $blog_url; ?>&amp;text=<?php echo $heading_title; ?>" class="ms-3" target="_blank"><i class="fa fa-paper-plane fa-2x text-light align-middle"></i></a>
