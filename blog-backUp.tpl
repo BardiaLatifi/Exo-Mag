@@ -51,7 +51,7 @@
                     <?php } ?>
 
                     <?php if($post_date_added_status  && false) { ?><span class="left-span-post"> <?php echo $date_time_diff; ?> <i class="icon-clock"></i><?php } ?></span></p>
-                    <!--  BLOG_LIST -->
+                <!--  BLOG_LIST. d-flex, flex-row, button and the i tag copied from blog_list file -->
                 <div class="d-flex flex-row align-items-end p-3 mb-3">
                     <button class="blog-dropdown-button btn p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#description-heading1" aria-expanded="true" aria-controls="description-heading1" style="width: 28px; height: 28px; background:#03C03C">
                     <i class="fa fa-angle-down fs-4 fw-bolder" style="transition: transform 0.2s ease; color:white"></i>
@@ -270,11 +270,19 @@
                     </div>
                 </div>
 
-                <!-- class="d-flex flex-wrap justify-content-between mb-n4". this class removed from the container -->
+                <!-- 
+                    New design - Like and Comment
+                 -->
+
                 <div>
                     <div class="w-100 text-center my-5">
                         <img  src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
                     </div>
+                    <div class="d-flex flex-row-reverse align-items-center justify-content-start gap-5">
+                    <i class="fas fa-comment"></i>
+                    <i class="icon-font icon-heart-fill py-2 like" role="button"></i>
+                    <h3 class="fs-6">این نوشته را دوست داشتید؟</h3>
+                </div>
 <!------------------
 TAGS
 -------------------->
@@ -339,6 +347,33 @@ TAGS
 <!------------------
 OWL - RELATED ARTICLES
 -------------------->
+
+                <!-- 
+                    New design - Suggested Articles
+                 -->
+                <h3 class="fs-6 fw-bolder mb-3">مقالات مرتبط</h3>
+                 <div class="d-grid" style="grid-template-columns: 80% 20%;">
+                    <div class="d-flex flex-column justify-content-between gap-2">
+                        <div class="d-flex flex-row gap-3">
+                            <i class="fas fa-bars"></i>
+                            <p>title</p>
+                        </div>
+                        <div class="d-flex flex-row gap-3">
+                            <i class="fas fa-bars"></i>
+                            <p>title</p>
+                        </div>
+                        <div class="d-flex flex-row gap-3">
+                            <i class="fas fa-bars"></i>
+                            <p>title</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-column justify-content-between gap-2">
+                        <p>Date</p>
+                        <p>Date</p>
+                        <p>Date</p>
+                    </div>
+                 </div>
 
             <?php if ($blogs) { ?>
                 <h5 class="mt-5 fw-bold">مقالات مرتبط</h5>
