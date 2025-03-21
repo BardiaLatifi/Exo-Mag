@@ -26,15 +26,20 @@
             <img src="<?php echo $image; ?>" alt="<?php echo $heading_title; ?>" class="w-100 mw-100" itemprop="image">
             <div class="p-4 rounded-2 mt-n2 position-relative">
                 <?php if ($edit) { ?><a href="<?php echo $edit; ?>" target="_blank" class="ms-auto mb-3 badge bg-secondary"><i class="fa fa-pencil fa-2x"></i></a><?php } ?>
-                <h1 class="h2 fw-bold border-bottom border-2 border-primary pb-3 lh-base text-center" itemprop="headline"><?php echo $heading_title; ?></h1>
-
-                <div class="fw-normal d-flex flex-column align-items-center mt-3 font-yekan">
-                    <img src="catalog/view/theme/default/image/avatar.jpg" alt="avatar" class="rounded-circle" width="60">
-                    <a href="<?php echo $user_info; ?>" class="my-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        نوشته‌ی <span class="text-primary" itemprop="name"><?php echo $author; ?></span>
-                    </a>
-                    <?php echo $date_time_diff; ?>
-                    <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
+                <!-- the title. border bottom removed -->
+                <h1 class="h2 fw-bold pb-3 lh-base text-center" itemprop="headline"><?php echo $heading_title; ?></h1>
+                <!-- The Author Container, flex-column removed, Avatar width changed from 60px to 45px -->
+                <div class="fw-normal d-flex align-items-center gap-2 mt-3 ps-2 font-yekan text-black">
+                    <div class="d-flex align-items-center">
+                        <img src="catalog/view/theme/default/image/avatar.jpg" alt="avatar" class="rounded-circle me-2" width="35">
+                        <a href="<?php echo $user_info; ?>" class="border-end border-2 pe-2 text-decoration-none" style="border-color: #03C03C !important" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            نوشته‌ی <span itemprop="name"><?php echo $author; ?></span>
+                        </a>
+                    </div>
+                    <div class="border-end border-2 pe-2" style="border-color: #03C03C !important">
+                        <?php echo $date_time_diff; ?>
+                        <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
+                    </div>
                 </div>
 
                 <?php if($post_author_status && false){ ?>
@@ -266,6 +271,9 @@
                     <div class="w-100 text-center my-5">
                         <img  src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
                     </div>
+<!------------------
+TAGS
+-------------------->
                     <div>
                         <?php if ($tags) { ?>
                             <div class="mb-4 fw-normal">
@@ -294,14 +302,17 @@
                         </div>
                         <?php } ?>
                     </div>
-                    <div>
+<!-------------------
+ the HTML tags of rate part commented out
+ -------------------->
+                    <!-- <div>
 						<div id="rate">
 							<div class="d-flex justify-content-end align-items-center fixed-rate text-end position-relative">
                                 <b class="text-secondary">امتیاز این مطلب: </b>
 								<span class="fs-3 text-secondary mx-2"><?php echo round($rate, 2); ?></span>
 								<i class="icon-font fs-3" style="--i:<?php echo $rate * 20; ?>%"></i>
 							</div>
-                        </div>
+                        </div> 
 						<div id="customer-rate">
 							<?php if ($customer_rate) { ?>
 							<div class="d-flex justify-content-end align-items-center fixed-rate text-end position-relative">
@@ -317,7 +328,7 @@
 							</div>
 							<?php } ?>
 						</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -403,7 +414,7 @@ OWL - RELATED PRODUCTS
  RATE - STYLE & LOGICS
  ------------------->
 
-<style>
+<!-- <style>
     #customer-rate i.icon-font::before ,
     #rate i.icon-font::before {
         content: "\0052\0052\0052\0052\0052";
@@ -462,7 +473,7 @@ OWL - RELATED PRODUCTS
 			}
 		});     
     })
-</script>
+</script> -->
 
 <!-------------------
 COMMENTS LOGICS
@@ -540,10 +551,6 @@ function likeComment (blog_comment_id, status) {
 /**** ON LOAD ****/ 
 
 $(document).ready(function(){
-
-  // Rounded class to all images in description
-  $('.description img').addClass('rounded w-100 mb-3 mt-3');
-  $('.description h3, h2').addClass('mb-3');
 
   $(".btn-owl-post").mouseover(function(){
     $(this).children('.cart').css('display', 'none');
