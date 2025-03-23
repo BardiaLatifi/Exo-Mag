@@ -344,12 +344,9 @@ TAGS
                 </div>
             </div>
 
-<!------------------
-OWL - RELATED ARTICLES
--------------------->
 
                 <!-- 
-                    New design - Suggested Articles
+                    New design - Related Articles
                  -->
                 <h3 class="fs-6 fw-bolder mb-3">مقالات مرتبط</h3>
                  <div class="d-grid" style="grid-template-columns: 80% 20%;">
@@ -375,8 +372,12 @@ OWL - RELATED ARTICLES
                     </div>
                  </div>
 
+                <!--
+                 New Design Suggested Articles
+                 -->
+
             <?php if ($blogs) { ?>
-                <h5 class="mt-5 fw-bold">مقالات مرتبط</h5>
+                <h5 class="mt-5 fw-bold">مقالات پیشنهادی</h5>
                 <div id="related-posts" class="owl-carousel mt-4">
                     <?php foreach ($blogs as $blog) { ?>
                         <a href="<?php echo $blog['href']; ?>" target="_blank" class="d-block rounded overflow-hidden border text-center">
@@ -390,7 +391,7 @@ OWL - RELATED ARTICLES
                 </div>
                 <script>
                     $('#related-posts').owlCarousel({
-                        items:4,rtl:true,nav:false,dots:false,loop:true,margin:36,autoplay:true
+                        items:3,rtl:true,nav:false,dots:false,loop:true,margin:36,autoplay:true
                     })
                 </script>
             <?php } ?>
@@ -416,14 +417,16 @@ COMMENT INPUT
 
             </div> -->
 
-<!------------------
-OWL - RELATED PRODUCTS
--------------------->
 
-            <?php if ($product_related) { ?>
-                <h5 class="mt-5 fw-bold">محصولات مرتبط</h5>
-                <div id="related-products" class="owl-carousel mt-4">
-				  <?php foreach ($product_related as $product) { ?>
+                <!-- ----------------
+                New Design - RELATED PRODUCTS
+                ------------------ -->
+
+        <?php if ($product_related) { ?>
+            <h5 class="fw-bold mb-5 mt-5">محصولات مرتبط</h5>
+            <div class=" rounded px-5 py-3" style="background:#E6F8E8;"> <!-- Added wrapper div with background and vertical padding -->
+                <div id="related-products" class="owl-carousel">
+                    <?php foreach ($product_related as $product) { ?>
                     <a href="<?php echo $product['href']; ?>" class="d-block text-center bg-white border rounded-1 overflow-hidden p-4">
                         <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-fluid">
                         <h6 class="text-dark fw-bold text-truncate my-3 latin-yekan"><?php echo $product['name']; ?></h6>
@@ -436,17 +439,18 @@ OWL - RELATED PRODUCTS
                             </div>
                         <?php } ?>
                     </a>
-				  <?php } ?>
+                    <?php } ?>
                 </div>
                 <script>
                     $('#related-products').owlCarousel({
-                        items:4,rtl:true,nav:false,dots:false,loop:true,margin:36,autoplay:true
-                    })
+                        items: 3, rtl: true, nav: false, dots: false, loop: true, margin: 36, autoplay: true
+                    });
                 </script>
-            <?php } ?>
-          <?php echo $content_bottom; ?>
-        </div> <?php echo $column_right; ?>
-    </div>
+            </div>
+        <?php } ?>
+    <?php echo $content_bottom; ?>
+</div> <?php echo $column_right; ?>
+</div>
 <?php } ?>
 
 <!-------------------
