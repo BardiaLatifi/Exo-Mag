@@ -52,13 +52,21 @@
 
                     <?php if($post_date_added_status  && false) { ?><span class="left-span-post"> <?php echo $date_time_diff; ?> <i class="icon-clock"></i><?php } ?></span></p>
                 <!--  BLOG_LIST. d-flex, flex-row, button and the i tag copied from blog_list file -->
-                <div class="d-flex flex-row align-items-end p-3 mb-3">
-                    <button class="blog-dropdown-button btn p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#description-heading" aria-expanded="true" aria-controls="description-heading" style="width: 28px; height: 28px; background:#03C03C">
-                    <i class="fa fa-angle-down fs-4 fw-bolder" style="transition: transform 0.2s ease; color:white"></i>
+                <div class="d-flex align-items-center p-3 mb-3">
+                    <button class="btn p-0 me-3" type="button" data-bs-toggle="collapse" 
+                            data-bs-target="#mobile-blog-list" aria-expanded="false"
+                            style="width: 28px; height: 28px; background:#03C03C">
+                        <i class="fa fa-angle-down fs-4 fw-bolder" style="color:white"></i>
                     </button>
-                    <h5 class="fw-bold mb-2">فهرست مطالب</h5>
-                    <div id="description-heading" class="d-inline-flex flex-column ms-3"></div>
+                    <h5 class="fw-bold mb-0">فهرست مطالب</h5>
                 </div>
+
+                <div id="mobile-blog-list" class="collapse mb-3">
+                    <div class="d-flex flex-nowrap overflow-auto px-2 pb-2" 
+                        style="touch-action: pan-x; scrollbar-width: none; -webkit-overflow-scrolling: touch;">
+                    </div>
+                </div>
+
                 <div class="description fw-normal mt-4 text-justify overflow-hidden" itemprop="articleBody">
                     <?php echo $description; ?>
                 </div>
@@ -196,38 +204,52 @@
         <?php } ?>
 
     </div>
-    
-<script>
+
+    <script>
 $(document).ready(function() {
-  $('.description h2, .description h3').each(function (key, element) {
-    $(element).after('<div id="description-heading-scroll' + key + '"></div>');
-    if (element.innerText.trim()) {
-      $('#description-heading.d-inline-flex').append('<a class="blog-topic my-2 d-flex align-items-center border-top" data-scroll="#description-heading-scroll' + key + '" role="button"><div class="blog-list-bullet align-self-center me-2"></div>' + element.innerText + '</a>');
-    }
-  });
-
-  $('#description-heading a').on('click', function () {
-    $('html, body').animate({ scrollTop: $($(this).data('scroll')).offset().top - 150 }, 100);
-  });
-
-  $(window).on('scroll', function () {
-    const scrollPosition = $(window).scrollTop() + 160;
-    let activeElement = null;
-
-    $('.description h2, .description h3').each(function (key, element) {
-      if ($('#description-heading-scroll' + key).offset().top <= scrollPosition) {
-        activeElement = key;
-      }
+    // Generate navigation items with scroll markers
+    $('.description h2, .description h3').each(function(key, element) {
+        const markerId = `mobile-scroll-marker-${key}`;
+        $(element).after(`<div id="${markerId}"></div>`);
+        
+        if ($(element).text().trim()) {
+            $('#mobile-blog-list > div').append(`
+                <a href="#${markerId}" 
+                   class="btn mx-2 text-nowrap bg-light" 
+                   data-scroll="${markerId}"
+                   role="button">
+                    ${$(element).text()}
+                </a>
+            `);
+        }
     });
 
-    $('#description-heading a.blog-topic').each(function (key, element) {
-      $(element).toggleClass('active', key === activeElement);
+    // Smooth scrolling with proper offset
+    $('#mobile-blog-list').on('click', 'a', function(e) {
+        e.preventDefault();
+        const marker = $(this).data('scroll');
+        const offset = 100; // Adjust based on mobile header height
+        
+        $('html, body').animate({
+            scrollTop: $(`#${marker}`).offset().top - offset
+        }, 500);
+        
     });
-  });
 
-  $(window).on('scroll', function () {
-    $('.position-sticky').css('top', $(window).scrollTop() > 100 ? '85px' : '386px');
-  });
+    // Active state detection (optional)
+    $(window).on('scroll', function() {
+        const scrollPosition = $(window).scrollTop() + offset;
+        let activeMarker = null;
+        
+        $('.description h2, .description h3').each(function(key) {
+            if ($(`#mobile-scroll-marker-${key}`).offset().top <= scrollPosition) {
+                activeMarker = key;
+            }
+        });
+        
+        $('#mobile-blog-list a').removeClass('active')
+            .eq(activeMarker).addClass('active');
+    });
 });
 </script>
 <?php } else { ?>
