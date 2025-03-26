@@ -53,7 +53,7 @@
                     <?php if($post_date_added_status  && false) { ?><span class="left-span-post"> <?php echo $date_time_diff; ?> <i class="icon-clock"></i><?php } ?></span></p>
                 <!--  BLOG_LIST. d-flex, flex-row, button and the i tag copied from blog_list file -->
                 <div class="d-flex flex-row align-items-end p-3 mb-3">
-                    <button class="blog-dropdown-button btn p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#description-heading1" aria-expanded="true" aria-controls="description-heading1" style="width: 28px; height: 28px; background:#03C03C">
+                    <button class="blog-dropdown-button btn p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#description-heading" aria-expanded="true" aria-controls="description-heading" style="width: 28px; height: 28px; background:#03C03C">
                     <i class="fa fa-angle-down fs-4 fw-bolder" style="transition: transform 0.2s ease; color:white"></i>
                     </button>
                     <h5 class="fw-bold mb-2">فهرست مطالب</h5>
@@ -66,15 +66,15 @@
                     <div class="d-flex my-4 fw-normal">
                         <span class="fw-bold flex-shrink-0 me-2"><?php echo $text_tags; ?></span>
                         <div>
-                            <?php for ($i = 0; $i < count($tags); $i++) { ?>
-                                <?php if ($i < (count($tags) - 1)) { ?>
-                                    <a href="<?php echo $tags[$i]['href']; ?>"
-                                       class="badge bg-light fw-normal text-dark text-wrap"><?php echo $tags[$i]['tag']; ?></a>
-                                <?php } else { ?>
-                                    <a href="<?php echo $tags[$i]['href']; ?>"
-                                       class="badge bg-light fw-normal text-dark text-wrap"><?php echo $tags[$i]['tag']; ?></a>
-                                <?php } ?>
-                            <?php } ?>
+						<?php for ($i = 0; $i < count($tags); $i++) { ?>
+						<?php if ($i < (count($tags) - 1)) { ?>
+							<a href="<?php echo $tags[$i]['href']; ?>"
+							   class="badge bg-light fw-normal text-dark text-wrap"><?php echo $tags[$i]['tag']; ?></a>
+						<?php } else { ?>
+							<a href="<?php echo $tags[$i]['href']; ?>"
+							   class="badge bg-light fw-normal text-dark text-wrap"><?php echo $tags[$i]['tag']; ?></a>
+						<?php } ?>
+						<?php } ?>
                         </div>
                     </div>
                 <?php } ?>
@@ -196,7 +196,40 @@
         <?php } ?>
 
     </div>
+    
+<script>
+$(document).ready(function() {
+  $('.description h2, .description h3').each(function (key, element) {
+    $(element).after('<div id="description-heading-scroll' + key + '"></div>');
+    if (element.innerText.trim()) {
+      $('#description-heading.d-inline-flex').append('<a class="blog-topic my-2 d-flex align-items-center border-top" data-scroll="#description-heading-scroll' + key + '" role="button"><div class="blog-list-bullet align-self-center me-2"></div>' + element.innerText + '</a>');
+    }
+  });
 
+  $('#description-heading a').on('click', function () {
+    $('html, body').animate({ scrollTop: $($(this).data('scroll')).offset().top - 150 }, 100);
+  });
+
+  $(window).on('scroll', function () {
+    const scrollPosition = $(window).scrollTop() + 160;
+    let activeElement = null;
+
+    $('.description h2, .description h3').each(function (key, element) {
+      if ($('#description-heading-scroll' + key).offset().top <= scrollPosition) {
+        activeElement = key;
+      }
+    });
+
+    $('#description-heading a.blog-topic').each(function (key, element) {
+      $(element).toggleClass('active', key === activeElement);
+    });
+  });
+
+  $(window).on('scroll', function () {
+    $('.position-sticky').css('top', $(window).scrollTop() > 100 ? '85px' : '386px');
+  });
+});
+</script>
 <?php } else { ?>
     <div class="row container-xxl mx-auto" itemscope itemtype="https://schema.org/BlogPosting">
 		<?php if ($breadcrumbs) { ?>
@@ -382,9 +415,20 @@ TAGS
                     <?php foreach ($blogs as $blog) { ?>
                         <a href="<?php echo $blog['href']; ?>" target="_blank" class="d-block rounded overflow-hidden border text-center">
                             <img class="top-img" src="<?php echo $blog['image']; ?>" alt="<?php echo $blog['title']; ?>">
-                            <div class="p-2">
+                            <div class="d-flex flex-column p-2">
                                 <h6 class="text-dark text-truncate my-3 latin-yekan"><?php echo $blog['title']; ?></h6>
-                                <small class="text-secondary fw-normal"><?php echo $blog['author']; ?></small>
+
+                                <div class="d-flex flex-row justify-content-between text-secondary fw-normal align-items-center" style="font-size: 0.8rem !important">
+                                    <div class="d-flex flex-row">
+                                        <img src="catalog/view/theme/default/image/avatar.jpg" alt="avatar" class="rounded-circle me-2" style="width: 30px;">
+                                        <small class=" align-self-center"><?php echo $blog['author']; ?></small>
+                                    </div>
+
+                                    <div>
+                                        <?php echo $date_time_diff; ?>
+                                        <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
+                                    </div>
+                                </div>
                             </div>
                         </a>
                     <?php } ?>
