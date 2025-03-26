@@ -53,7 +53,7 @@
                     <?php if($post_date_added_status  && false) { ?><span class="left-span-post"> <?php echo $date_time_diff; ?> <i class="icon-clock"></i><?php } ?></span></p>
                 <!--  BLOG_LIST. d-flex, flex-row, button and the i tag copied from blog_list file -->
                 <div class="d-flex align-items-center p-3 mb-3">
-                    <button class="btn p-0 me-3" type="button" data-bs-toggle="collapse" 
+                    <button id="mobile-toc-button" class="btn p-0 me-3" type="button" data-bs-toggle="collapse" 
                             data-bs-target="#mobile-blog-list" aria-expanded="false"
                             style="width: 28px; height: 28px; background:#03C03C">
                         <i class="fa fa-angle-down fs-4 fw-bolder" style="color:white"></i>
@@ -207,7 +207,6 @@
 
     <script>
 $(document).ready(function() {
-    // Generate navigation items with scroll markers
     $('.description h2, .description h3').each(function(key, element) {
         const markerId = `mobile-scroll-marker-${key}`;
         $(element).after(`<div id="${markerId}"></div>`);
@@ -222,36 +221,35 @@ $(document).ready(function() {
                 </a>
             `);
         }
+
+        $('#mobile-blog-list').on('show.bs.collapse', function() {
+            $('#mobile-toc-button i').addClass('rotate-180');
+        }).on('hide.bs.collapse', function() {
+            $('#mobile-toc-button i').removeClass('rotate-180');
+        });
     });
 
-    // Smooth scrolling with proper offset
     $('#mobile-blog-list').on('click', 'a', function(e) {
         e.preventDefault();
         const marker = $(this).data('scroll');
-        const offset = 100; // Adjust based on mobile header height
+        const offset = 100;
         
         $('html, body').animate({
             scrollTop: $(`#${marker}`).offset().top - offset
         }, 500);
         
     });
-
-    // Active state detection (optional)
-    $(window).on('scroll', function() {
-        const scrollPosition = $(window).scrollTop() + offset;
-        let activeMarker = null;
-        
-        $('.description h2, .description h3').each(function(key) {
-            if ($(`#mobile-scroll-marker-${key}`).offset().top <= scrollPosition) {
-                activeMarker = key;
-            }
-        });
-        
-        $('#mobile-blog-list a').removeClass('active')
-            .eq(activeMarker).addClass('active');
-    });
 });
 </script>
+<style>
+.fa-angle-down {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+.rotate-180 {
+    transform: rotate(180deg);
+}
+</style>
 <?php } else { ?>
     <div class="row container-xxl mx-auto" itemscope itemtype="https://schema.org/BlogPosting">
 		<?php if ($breadcrumbs) { ?>
