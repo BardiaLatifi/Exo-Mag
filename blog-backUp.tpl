@@ -70,6 +70,24 @@
                 <div class="description fw-normal mt-4 text-justify overflow-hidden" itemprop="articleBody">
                     <?php echo $description; ?>
                 </div>
+
+                    <!-- 
+                        New design - Like and Comment
+                    -->
+                    <div class="w-100 text-center my-5">
+                        <img  src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
+                    </div>
+
+                <div class="d-flex flex-row align-items-center justify-content-between ">
+                    <h3 class="fs-6 fw-bold">این نوشته را دوست داشتید؟</h3>
+                    <div class="d-flex gap-5">
+                        <i class="fas fa-comment"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
+
+                <!-- The Tags -->
+
                 <?php if ($tags) { ?>
                     <div class="d-flex my-4 fw-normal">
                         <span class="fw-bold flex-shrink-0 me-2"><?php echo $text_tags; ?></span>
@@ -86,6 +104,41 @@
                         </div>
                     </div>
                 <?php } ?>
+
+                <!-- New Design FAQ -->
+
+                <div class="w-100 border-top my-5 py-3">
+                <h3 class="fs-5 fw-bold">سوالات متداول</h3>
+                </div>
+
+
+                <!-- New Design Related Articles -->
+
+                <div class="w-100 border-top my-5 py-3">
+                <h3 class="fs-5 fw-bold">مقالات مرتبط</h3>
+                <div class="d-flex flex-column p-3">
+                    <div class="d-flex flex-row gap-3">
+                        <i class="fas fa-bars"></i>
+                        <p>title</p>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <i class="fas fa-bars"></i>
+                        <p>title</p>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <i class="fas fa-bars"></i>
+                        <p>title</p>
+                    </div>
+                </div>
+                </div>
+
+                <!-- New Design The Latest Articles -->
+
+                <div class="w-100 text-light text-center p-4" style="background: rgba(3, 192, 60, 1);">
+                    <p class="m-0">آخرین مقالات</p>
+                </div>
+
+            <!-- 
                 <div class="d-none">
                     <?php if ($customer_liked) { ?>
                         <i class="fa fa-heart liked"></i>
@@ -93,7 +146,7 @@
                         <i class="fa fa-heart-o like"></i>
                     <?php } ?>
                     <span id="count-liked"><?php echo $count_liked; ?></span> نفر این پست را پسندیده اند. <span class="bold-txt"><?php echo $text_share_this;?></span>
-                </div>
+                </div> 
                 <div class="d-flex justify-content-between pb-4 border-bottom border-light py-1 border-1 mb-4">
                     <div>
                         <h6 class="fw-bold mb-3">به اشتراک بگذارید در :</h6>
@@ -122,6 +175,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </div>
@@ -187,7 +241,9 @@
     <?php } ?>
 
 
-    <h4 class="fw-bold mx-4">نظرات</h4>
+<!-- Comments -->
+
+    <!-- <h4 class="fw-bold mx-4">نظرات</h4>
     <div class="container-xl px-4 mt-3">
         <div id="comment" class="bg-white px-3 py-1 rounded-2 shadow-sm"></div>
         <?php if(!$allow_comment) { ?>
@@ -201,7 +257,7 @@
                 <?php echo $site_key; ?>
                 <button type="button" id="button-comment" class="btn btn-success rounded-2"><?php echo $text_write_comment; ?></button>
             </form>
-        <?php } ?>
+        <?php } ?> -->
 
     </div>
 
@@ -242,13 +298,13 @@ $(document).ready(function() {
 });
 </script>
 <style>
-.fa-angle-down {
-    transition: transform 0.3s ease;
-    display: inline-block;
-}
-.rotate-180 {
-    transform: rotate(180deg);
-}
+    .fa-angle-down {
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
 </style>
 <?php } else { ?>
     <div class="row container-xxl mx-auto" itemscope itemtype="https://schema.org/BlogPosting">
@@ -323,19 +379,12 @@ $(document).ready(function() {
                     </div>
                 </div>
 
-                <!-- 
-                    New design - Like and Comment
-                 -->
-
-                <div>
+                    <!-- 
+                        Gray Logo
+                    -->
                     <div class="w-100 text-center my-5">
                         <img  src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
                     </div>
-                    <div class="d-flex flex-row-reverse align-items-center justify-content-start gap-5">
-                    <i class="fas fa-comment"></i>
-                    <i class="icon-font icon-heart-fill py-2 like" role="button"></i>
-                    <h3 class="fs-6">این نوشته را دوست داشتید؟</h3>
-                </div>
 <!------------------
 TAGS
 -------------------->
@@ -367,6 +416,15 @@ TAGS
                         </div>
                         <?php } ?>
                     </div>
+
+                    <div class="d-flex flex-row align-items-center justify-content-end gap-5 ">
+                        <h3 class="fs-6 fw-bold">این نوشته را دوست داشتید؟</h3>
+                            <div class="d-flex gap-5">
+                                <i class="fas fa-comment"></i>
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                    </div>
+
 <!-------------------
  the HTML tags of rate part commented out
  -------------------->
