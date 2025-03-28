@@ -134,9 +134,31 @@
 
                 <!-- New Design The Latest Articles -->
 
-                <div class="w-100 text-light text-center p-4" style="background: rgba(3, 192, 60, 1);">
-                    <p class="m-0">آخرین مقالات</p>
+                <div class="w-100 text-white text-center p-4" style="background: rgba(3, 192, 60, 1);">
+                    <p class="m-0 fs-5">آخرین مقالات</p>
                 </div>
+                <!-- Deep Seek OutPut -->
+                <?php if ($blogs) { ?>
+                    <div class="d-flex flex-column gap-4 mt-4">
+                        <?php $count = 0; ?>
+                        <?php foreach ($blogs as $blog) { ?>
+                            <?php if ($count++ >= 3) break; ?>
+                            <a href="<?php echo $blog['href']; ?>" target="_blank" class="d-block rounded overflow-hidden text-decoration-none text-dark">
+                                <div class="row border-bottom border-light border-2 py-3">
+                                    <div class="col-8">
+                                        <div class="d-flex flex-column p-3 h-100">
+                                            <small class="text-light lh-5 fs-6 mb-3"><?php echo $blog['author']; ?></small>
+                                            <h3 class="text-muted lh-5 fs-5 mb-2"><?php echo $blog['title']; ?></h3>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center col-4">
+                                        <img class="w-100 rounded object-fit-cover" src="<?php echo $blog['image']; ?>" alt="<?php echo $blog['title']; ?>">
+                                    </div>
+                                </div>
+                            </a>    
+                        <?php } ?>
+                    </div>
+                <?php } ?>
 
             <!-- 
                 <div class="d-none">
