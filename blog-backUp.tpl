@@ -235,10 +235,12 @@
         </div>
     <?php } ?>
 
+    <!-- New Design Related Products -->
+
     <?php if ($product_related) { ?>
-            <h4 class="fw-bold mx-4">محصولات مرتبط</h4>
+            <h4 class="fw-bold m-4">محصولات مرتبط</h4>
         </div>
-        <div id="related-products" class="owl-carousel ps-4 mt-2">
+        <div id="related-products" class="owl-carousel ps-4 mt-2" style="background:rgba(230, 248, 232, 1);">
 		  <?php foreach ($product_related as $product) { ?>
             <a href="<?php echo $product['href']; ?>" class="d-flex flex-column h-100 bg-white text-center border rounded-2 overflow-hidden p-3">
                 <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-fluid">
@@ -261,6 +263,40 @@
             })
         </script>
     <?php } ?>
+
+    <!-- New design suggested Articles -->
+
+    <h5 class="m-4 fw-bold">مقالات پیشنهادی</h5>
+
+    <?php if ($blogs) { ?>
+                <div id="related-posts" class="owl-carousel mt-4 ps-3">
+                    <?php foreach ($blogs as $blog) { ?>
+                        <a href="<?php echo $blog['href']; ?>" target="_blank" class="d-block rounded overflow-hidden border text-center">
+                            <img class="top-img" src="<?php echo $blog['image']; ?>" alt="<?php echo $blog['title']; ?>">
+                            <div class="d-flex flex-column p-2">
+                                <h6 class="text-dark text-truncate my-3 latin-yekan"><?php echo $blog['title']; ?></h6>
+
+                                <div class="d-flex flex-row justify-content-between text-secondary fw-normal align-items-center" style="font-size: 0.8rem !important">
+                                    <div class="d-flex flex-row my-2 mx-1">
+                                        <img src="catalog/view/theme/default/image/avatar.jpg" alt="avatar" class="rounded-circle me-3" style="width: 25px;">
+                                        <small class=" align-self-center"><?php echo $blog['author']; ?></small>
+                                    </div>
+
+                                    <div>
+                                        <?php echo $date_time_diff; ?>
+                                        <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    <?php } ?>
+                </div>
+                <script>
+                    $('#related-posts').owlCarousel({
+                        items:1.5,rtl:true,nav:false,dots:false,loop:true,margin:36,autoplay:true
+                    })
+                </script>
+            <?php } ?>
 
 
 <!-- Comments -->
