@@ -52,21 +52,22 @@
 
                     <?php if($post_date_added_status  && false) { ?><span class="left-span-post"> <?php echo $date_time_diff; ?> <i class="icon-clock"></i><?php } ?></span></p>
                 <!--  BLOG_LIST. d-flex, flex-row, button and the i tag copied from blog_list file -->
-                <div class="d-flex align-items-center p-3 mb-3">
+                <div class="position-sticky bg-light mb-3" style="top: 55px; z-index: 1000; overflow: visible">
+                    <div class="d-flex align-items-center p-2">
                     <button id="mobile-toc-button" class="btn p-0 me-3" type="button" data-bs-toggle="collapse" 
                             data-bs-target="#mobile-blog-list" aria-expanded="false"
-                            style="width: 28px; height: 28px; background:#03C03C">
+                            style="width: 25px; height: 25px; background:#03C03C">
                         <i class="fa fa-angle-down fs-4 fw-bolder" style="color:white"></i>
                     </button>
-                    <h5 class="fw-bold mb-0">فهرست مطالب</h5>
-                </div>
+                        <h5 class="fw-bold mb-0">فهرست مطالب</h5>
+                    </div>
 
-                <div id="mobile-blog-list" class="collapse mb-3">
-                    <div class="d-flex flex-nowrap overflow-auto px-2 pb-2" 
-                        style="touch-action: pan-x; scrollbar-width: none; -webkit-overflow-scrolling: touch;">
+                    <div id="mobile-blog-list" class="border-2 border-top collapse">
+                        <div class="d-flex flex-nowrap overflow-auto px-2 pb-2" 
+                            style="position: sticky; touch-action: pan-x; scrollbar-width: none">
+                        </div>
                     </div>
                 </div>
-
                 <div class="description fw-normal mt-4 text-justify overflow-hidden" itemprop="articleBody">
                     <?php echo $description; ?>
                 </div>
@@ -328,7 +329,7 @@ $(document).ready(function() {
         if ($(element).text().trim()) {
             $('#mobile-blog-list > div').append(`
                 <a href="#${markerId}" 
-                   class="btn mx-2 text-nowrap bg-light" 
+                   class="btn border-2 border-end text-nowrap bg-light" 
                    data-scroll="${markerId}"
                    role="button">
                     ${$(element).text()}
@@ -509,8 +510,9 @@ TAGS
 							</div>
 							<?php } ?>
 						</div>
-                    </div> -->
+                    </div> 
                 </div>
+                -->
             </div>
 
 
