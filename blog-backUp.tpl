@@ -52,7 +52,7 @@
 
                     <?php if($post_date_added_status  && false) { ?><span class="left-span-post"> <?php echo $date_time_diff; ?> <i class="icon-clock"></i><?php } ?></span></p>
                 <!--  BLOG_LIST. d-flex, flex-row, button and the i tag copied from blog_list file -->
-                <div class="position-sticky bg-light mb-3" style="top: 55px; z-index: 1000; overflow: visible">
+                <div class="position-sticky bg-light mb-3" style="top: 55px; overflow: visible">
                     <div class="d-flex align-items-center p-2">
                     <button id="mobile-toc-button" class="btn p-0 me-3" type="button" data-bs-toggle="collapse" 
                             data-bs-target="#mobile-blog-list" aria-expanded="false"
@@ -302,7 +302,7 @@
 
 <!-- Comments -->
 
-    <!-- <h4 class="fw-bold mx-4">نظرات</h4>
+    <h4 class="fw-bold m-4">نظرات</h4>
     <div class="container-xl px-4 mt-3">
         <div id="comment" class="bg-white px-3 py-1 rounded-2 shadow-sm"></div>
         <?php if(!$allow_comment) { ?>
@@ -310,13 +310,13 @@
         <?php } ?>
         <?php //if($allow_comment && $is_logged) { ?>
         <?php if($allow_comment) { ?>
-            <form class="text-end mt-4" id="comment-form">
+            <form class="text-end my-4" id="comment-form">
 				<input type="text" name="name" value="" id="input-name" placeholder="نام شما" class="form-control" />
                 <textarea name="comment" class="bg-white p-3 shadow-sm rounded-2 w-100 border-0" placeholder="دیدگاه خود را اینجا بنویسید" rows="10"></textarea>
                 <?php echo $site_key; ?>
-                <button type="button" id="button-comment" class="btn btn-success rounded-2"><?php echo $text_write_comment; ?></button>
+                <button type="button" id="button-comment" class="btn btn-success rounded-2 mt-2"><?php echo $text_write_comment; ?></button>
             </form>
-        <?php } ?> -->
+        <?php } ?>
 
     </div>
 
