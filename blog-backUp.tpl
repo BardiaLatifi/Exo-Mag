@@ -330,7 +330,8 @@ $(document).ready(function() {
         if ($(element).text().trim()) {
             $('#mobile-blog-list > div').append(`
                 <a href="#${markerId}" 
-                   class="btn border-2 border-end text-nowrap bg-light" 
+                   class="btn border-2 border-end text-nowrap bg-light"
+                   style="border:0; border-radius:0;"
                    data-scroll="${markerId}"
                    role="button">
                     ${$(element).text()}
@@ -350,6 +351,12 @@ $(document).ready(function() {
         const marker = $(this).data('scroll');
         const offset = 100;
         
+    
+        // Remove active class from all links
+        $('#mobile-blog-list a').removeClass('active');
+        // Add active class to clicked link
+        $(this).addClass('active');
+
         $('html, body').animate({
             scrollTop: $(`#${marker}`).offset().top - offset
         }, 500);
@@ -364,6 +371,10 @@ $(document).ready(function() {
     }
     .rotate-180 {
         transform: rotate(180deg);
+    }
+
+    .active {
+       background-color: #E6F8E8 !important;
     }
 </style>
 <?php } else { ?>
