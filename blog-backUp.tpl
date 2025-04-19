@@ -40,7 +40,7 @@
                         <?php echo $date_time_diff; ?>
                         <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
                     </div>
-                    <div>زمان مطالعه:</div>
+                    <div>زمان مطالعه: <?php echo $text_read_time; ?></div>
                 </div>
 
                 <?php if($post_author_status && false){ ?>
@@ -79,13 +79,6 @@
                         <img  src="catalog/view/theme/default/image/gray-logo.png" alt="logo">
                     </div>
 
-                <div class="d-flex flex-row align-items-center justify-content-between ">
-                    <h3 class="fs-6 fw-bold">این نوشته را دوست داشتید؟</h3>
-                    <div class="d-flex gap-5">
-                        <i class="fas fa-comment"></i>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
 
                 <!-- The Tags -->
 
@@ -105,6 +98,15 @@
                         </div>
                     </div>
                 <?php } ?>
+				
+				 <?php if (false) { ?>
+                <div class="d-flex flex-row align-items-center justify-content-between ">
+                    <h3 class="fs-6 fw-bold">این نوشته را دوست داشتید؟</h3>
+                    <div class="d-flex gap-5">
+                        <i class="fas fa-comment"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
 
                 <!-- New Design FAQ -->
 
@@ -139,6 +141,7 @@
                     <p class="m-0 fs-5">آخرین مقالات</p>
                 </div>
                 <!-- Deep Seek OutPut -->
+				<?php } ?>
                 <?php if ($blogs) { ?>
                     <div class="d-flex flex-column gap-4 mt-4">
                         <?php $count = 0; ?>
@@ -161,7 +164,6 @@
                     </div>
                 <?php } ?>
 
-            <!-- 
                 <div class="d-none">
                     <?php if ($customer_liked) { ?>
                         <i class="fa fa-heart liked"></i>
@@ -198,7 +200,6 @@
                         </div>
                     </div>
                 </div>
-                -->
             </div>
         </div>
     </div>
@@ -416,7 +417,7 @@ $(document).ready(function() {
                         <meta content="<?php echo $date_added; ?>" itemprop="datePublished">
                     </div>
                     <div class="me-4 pe-4" style="border-color: #03C03C !important">
-                        <p class="mb-0" >زمان مطالعه:</p>
+                        <p class="mb-0" >زمان مطالعه: <?php echo $text_read_time; ?></p>
                     </div>
                     <?php if ($edit) { ?><a href="<?php echo $edit; ?>" target="_blank" class="ms-auto badge bg-secondary"><i class="fa fa-pencil fa-2x"></i></a><?php } ?>
 
@@ -476,18 +477,10 @@ TAGS
                         <?php } ?>
                     </div>
 
-                    <div class="d-flex flex-row align-items-center justify-content-end gap-5 ">
-                        <h3 class="fs-6 fw-bold">این نوشته را دوست داشتید؟</h3>
-                            <div class="d-flex gap-5">
-                                <i class="fas fa-comment"></i>
-                                <i class="fa-solid fa-heart"></i>
-                            </div>
-                    </div>
-
 <!-------------------
  the HTML tags of rate part commented out
  -------------------->
-                    <!-- <div>
+                    <div>
 						<div id="rate">
 							<div class="d-flex justify-content-end align-items-center fixed-rate text-end position-relative">
                                 <b class="text-secondary">امتیاز این مطلب: </b>
@@ -512,9 +505,19 @@ TAGS
 						</div>
                     </div> 
                 </div>
-                -->
-            </div>
+ 
 
+
+
+
+				 <?php if (false) { ?>
+				<div class="d-flex flex-row align-items-center justify-content-end gap-5 ">
+					<h3 class="fs-6 fw-bold">این نوشته را دوست داشتید؟</h3>
+						<div class="d-flex gap-5">
+							<i class="fas fa-comment"></i>
+							<i class="fa-solid fa-heart"></i>
+						</div>
+				</div>
 
                 <!-- 
                     New design - Related Articles
@@ -542,6 +545,7 @@ TAGS
                         <p>Date</p>
                     </div>
                  </div>
+				 <?php } ?>
 
                 <!--
                  New Design Suggested Articles
@@ -582,7 +586,7 @@ TAGS
 COMMENT INPUT
 -------------------->
 
-            <!-- <div class="comments mt-5">
+             <div class="comments mt-5">
                 <div id="comment" class="col-8 mx-auto"></div>
                 <?php if(!$allow_comment) { ?>
                     <h6 class="rounded-1 p-3 text-center fw-bold mt-3"> برای ارسال دیدگاه ابتدا باید<a href="javascript:$('#login-form').modal('show');" class="text-success"> وارد شوید.</a></h6>
@@ -597,7 +601,7 @@ COMMENT INPUT
                     </form>
                 <?php } ?>
 
-            </div> -->
+            </div>
 
 
                 <!-- ----------------
@@ -630,16 +634,20 @@ COMMENT INPUT
                 </script>
             </div>
         <?php } ?>
+
+
+
     <?php echo $content_bottom; ?>
-</div> <?php echo $column_right; ?>
-</div>
+ 
+            </div><?php echo $column_right; ?>
+</div> 
 <?php } ?>
 
 <!-------------------
  RATE - STYLE & LOGICS
  ------------------->
 
-<!-- <style>
+ <style>
     #customer-rate i.icon-font::before ,
     #rate i.icon-font::before {
         content: "\0052\0052\0052\0052\0052";
@@ -698,7 +706,7 @@ COMMENT INPUT
 			}
 		});     
     })
-</script> -->
+</script>
 
 <!-------------------
 COMMENTS LOGICS
